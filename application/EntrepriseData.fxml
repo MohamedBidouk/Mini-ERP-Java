@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="723.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EntrepriseController">
+   <children>
+      <ToggleButton fx:id="empOrVen" layoutX="25.0" layoutY="60.0" mnemonicParsing="false" text="Employe ou Vendeur" />
+      <Button fx:id="listerBtn" layoutX="539.0" layoutY="60.0" mnemonicParsing="false" onAction="#importListBetween" prefHeight="25.0" prefWidth="163.0" text="lister between two salary" />
+      <TextField fx:id="max" layoutX="638.0" layoutY="25.0" prefHeight="25.0" prefWidth="66.0" />
+      <TextField fx:id="min" layoutX="538.0" layoutY="25.0" prefHeight="25.0" prefWidth="74.0" />
+      <Button fx:id="listerParSalaire" layoutX="400.0" layoutY="25.0" mnemonicParsing="false" onAction="#plusFaible" text="lister per plus faible" />
+      <Button fx:id="listerParAncienette" layoutX="259.0" layoutY="25.0" mnemonicParsing="false" onAction="#importListParAnc" text="lister per ancienette" />
+      <Button fx:id="deleteBtn" layoutX="129.0" layoutY="25.0" mnemonicParsing="false" onAction="#plusFortVendeur" text="lister vendeur fort">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="ajoutBtn" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#switchToVueScene" text="ajouterSalarié" />
+      <TableView fx:id="table" layoutX="89.0" layoutY="100.0" prefHeight="300.0" prefWidth="633.0">
+        <columns>
+          <TableColumn fx:id="matCol" prefWidth="84.0" text="Matricule" />
+          <TableColumn fx:id="nomCol" prefWidth="82.0" text="Nom" />
+            <TableColumn fx:id="emailCol" prefWidth="195.0" text="Email" />
+            <TableColumn fx:id="salaireCol" prefWidth="73.0" text="Salaire" />
+            <TableColumn prefWidth="197.0" text="Gestion">
+               <columns>
+                  <TableColumn fx:id="seeDetailButtonCol" prefWidth="59.0" text="Detail" />
+                  <TableColumn fx:id="modifyButtonCol" prefWidth="71.0" text="Edit" />
+                  <TableColumn fx:id="deleteButtonCol" prefWidth="67.0" text="Delete" />
+               </columns>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <TableView fx:id="table2" layoutY="123.0" prefHeight="277.0" prefWidth="89.0">
+         <columns>
+            <TableColumn fx:id="categoryCol" prefWidth="88.0" text="Category" />
+         </columns>
+      </TableView>
+      <Button fx:id="AfficherTout" layoutX="166.0" layoutY="60.0" mnemonicParsing="false" onAction="#importList" text="Afficher tout" />
+      <Button fx:id="export" layoutX="25.0" layoutY="93.0" mnemonicParsing="false" onAction="#exportList" text="Exporter" />
+      <TextField fx:id="search" layoutX="259.0" layoutY="60.0" prefHeight="25.0" prefWidth="259.0" />
+   </children>
+</AnchorPane>

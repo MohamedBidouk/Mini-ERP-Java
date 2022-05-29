@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="59.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.vueDetailController">
+   <top>
+      <TableView fx:id="table" prefHeight="58.0" prefWidth="697.0" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn fx:id="matCol" prefWidth="38.0" text="mat" />
+            <TableColumn fx:id="nomCol" prefWidth="112.0" text="nom" />
+            <TableColumn fx:id="emailCol" prefWidth="186.0" text="email" />
+            <TableColumn fx:id="salaireCol" prefWidth="75.0" text="salaire" />
+            <TableColumn fx:id="dateCol" prefWidth="142.0" text="dateEmbauche" />
+            <TableColumn fx:id="supCol" minWidth="0.0" prefWidth="142.0" text="Taux de vente" />
+        </columns>
+      </TableView>
+   </top>
+   <left>
+      <Button fx:id="btn" mnemonicParsing="false" onAction="#importList" text="Button" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

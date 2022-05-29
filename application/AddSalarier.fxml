@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="338.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddSalarierController">
+   <children>
+      <TextField fx:id="sup" layoutX="153.0" layoutY="157.0" />
+      <TextField fx:id="date" layoutX="153.0" layoutY="124.0" />
+      <TextField fx:id="email" layoutX="153.0" layoutY="91.0" />
+      <TextField fx:id="nom" layoutX="153.0" layoutY="57.0" />
+      <TextField fx:id="matric" layoutX="153.0" layoutY="23.0" />
+      <Label layoutX="35.0" layoutY="194.0" text="Category">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="159.0" text="Sup">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="126.0" prefHeight="21.0" prefWidth="107.0" text="dateEmbuche">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="93.0" text="Email">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="59.0" text="Nom">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="confirmBtn" layoutX="179.0" layoutY="239.0" mnemonicParsing="false" onAction="#addMethod" prefHeight="45.0" prefWidth="123.0" text="Confirmer">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Button>
+      <Button fx:id="cancelBtn" layoutX="31.0" layoutY="239.0" mnemonicParsing="false" onAction="#switchToVueScene" prefHeight="45.0" prefWidth="123.0" text="Annuler">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Button>
+      <Label layoutX="38.0" layoutY="25.0" text="Matricule">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="choix" layoutX="153.0" layoutY="192.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

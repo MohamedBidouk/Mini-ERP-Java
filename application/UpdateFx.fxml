@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="225.0" prefWidth="396.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UpdateFxController">
+   <left>
+      <VBox prefHeight="156.0" prefWidth="139.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="10.0" layoutY="27.0" text="Nom">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Email">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="10.0" layoutY="44.0" prefHeight="21.0" prefWidth="138.0" text="dateEmbuche">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="10.0" layoutY="61.0" text="Sup">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="10.0" layoutY="78.0" text="Category">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox prefHeight="156.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="nom">
+               <VBox.margin>
+                  <Insets right="15.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="email">
+               <VBox.margin>
+                  <Insets right="15.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="date" layoutX="10.0" layoutY="10.0">
+               <VBox.margin>
+                  <Insets right="15.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="sup" layoutX="10.0" layoutY="35.0">
+               <VBox.margin>
+                  <Insets right="15.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="category" layoutX="10.0" layoutY="85.0">
+               <VBox.margin>
+                  <Insets right="15.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
+   </right>
+   <bottom>
+      <HBox prefHeight="49.0" prefWidth="396.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#switchToVueScene" text="Annuler">
+               <HBox.margin>
+                  <Insets left="50.0" top="13.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button fx:id="confirmBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateMethod" text="Confirmer">
+               <HBox.margin>
+                  <Insets left="170.0" top="13.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
