@@ -8,7 +8,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
-
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,7 +71,70 @@ public class UpdateFxController implements Initializable{
 		
 		@Override
 		public void initialize(URL location, ResourceBundle resources) { 
-
+			
+			email.textProperty().addListener(new ChangeListener<String>() {
+			    @Override
+			    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+			        String newValue) {
+			        if (!newValue.matches("^(.+)@(.+)$*")) {
+			        	confirmBtn.setText("Check Email");
+		        		confirmBtn.setDisable(true);
+			        }else {
+			        	confirmBtn.setText("Confirmer");
+		        		confirmBtn.setDisable(false);
+			        }
+			        
+			    }
+			});
+			
+			nom.textProperty().addListener(new ChangeListener<String>() {
+			    @Override
+			    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+			        String newValue) {
+			        if (!newValue.matches("^[a-zA-Z]*$")) {
+			            nom.setText(newValue.replaceAll("[1-9]*$", ""));
+			        }else if(newValue.length()==0){
+			        	confirmBtn.setText("Check Nom");
+		        		confirmBtn.setDisable(true);
+			        }else {
+			        	confirmBtn.setText("Confirmer");
+		        		confirmBtn.setDisable(false);
+			        }
+			    }
+			});
+			
+			
+			date.textProperty().addListener(new ChangeListener<String>() {
+			    @Override
+			    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+			        String newValue) {
+			        if (newValue.length()>6) {
+			            date.setText(newValue.replace(newValue, oldValue));
+			        }else if(newValue.length()==0){
+			        	confirmBtn.setText("Check Nom");
+		        		confirmBtn.setDisable(true);
+			        }else {
+			        	confirmBtn.setText("Confirmer");
+		        		confirmBtn.setDisable(false);
+			        }
+			    }
+			});
+			
+			category.textProperty().addListener(new ChangeListener<String>() {
+			    @Override
+			    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+			        String newValue) {
+			        if (!newValue.matches("^[a-zA-Z]*$")) {
+			            category.setText(newValue.replace(newValue, oldValue));
+			        }else if(newValue.length()==0 ){
+			        	confirmBtn.setText("Check Category");
+		        		confirmBtn.setDisable(true);
+			        }else if(newValue.matches("Employe") || newValue.matches("Vendeur")) {
+			        	confirmBtn.setText("Confirmer");
+		        		confirmBtn.setDisable(false);
+			        }
+			    }
+			});
 			
 			confirmBtn.setOnAction((event) -> {
 				updateMethod();
@@ -128,7 +192,7 @@ public class UpdateFxController implements Initializable{
 		
 		@FXML
 		public void getEntredData() {
-			System.out.println(nom.getText());
+			
 		}
 		
 		@FXML

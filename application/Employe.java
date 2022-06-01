@@ -24,8 +24,8 @@ public class Employe extends Salarier{
 	}
 	@Override
 	public String toString() {
-		return  getMatricule() + ","  + getNom() + "," + getEmail()  + "," + getSalaire() 
-				+ "," + getRecru()  + "," + getSup()  + "," + getPrixSuperieur();
+		return  "|"+getMatricule() + "|"  + getNom() + "|" + getEmail()  + "|" + getSalaire() 
+				+ "|" + getRecru()  + "|" + getSup()  + "|" + getPrixSuperieur();
 	}
 	
 	

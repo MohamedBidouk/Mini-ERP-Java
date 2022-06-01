@@ -21,10 +21,21 @@ public class Vendeur extends Salarier{
 		Pourcentage = Vente * 4;
 		setSalaire((Pourcentage+Salarier.salaireFix(recru)));
 	}
+	
+	public String createEs(String s) {
+		String espace = "";
+		for(int i = 0; i<15-s.length(); i++) {
+			espace += " ";
+		}
+		return espace;
+	}
 	@Override
 	public String toString() {
-		return getMatricule() + ","  + getNom() + "," + getEmail()  + "," + getSalaire() 
-		+ "," + getRecru()  + "," + getVente()  + "," + getPourcentage();
+		
+		return "|"+getMatricule() +createEs(Integer.toString(getMatricule()))+ "|"  + getNom() +createEs(getNom())+"|" + getEmail()  
+		+createEs(getEmail())+ "|" + getSalaire()+createEs(Double.toString(getSalaire())) 
+		+ "|" + getRecru()  +createEs(Double.toString(getRecru())) + "|" + getVente()  +createEs(Double.toString(getVente())) 
+		+ "|" + getPourcentage()+createEs(Double.toString(getPourcentage())) ;
 	}
 	
 	

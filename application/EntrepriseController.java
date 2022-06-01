@@ -62,7 +62,7 @@ public class EntrepriseController implements Initializable{
 		matCol.setCellValueFactory(new PropertyValueFactory<>("Matricule"));
 		 nomCol.setCellValueFactory(new PropertyValueFactory<>("Nom"));
 		 emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
-		 salaireCol.setCellValueFactory(new PropertyValueFactory<>("SalaireFix"));
+		 salaireCol.setCellValueFactory(new PropertyValueFactory<>("Salaire"));
 		 categoryCol.setCellValueFactory(new PropertyValueFactory<>("Cat"));
 		 table2.setFixedCellSize(31.0);table.setFixedCellSize(31.0);
 		 
@@ -99,15 +99,42 @@ public class EntrepriseController implements Initializable{
 			})); 
 		 
 		 min.textProperty().addListener(new ChangeListener<String>() {
-			    @Override
+ 
+				@Override
 			    public void changed(ObservableValue<? extends String> observable, String oldValue, 
-			        String newValue) {
+			        String newValue) {					
 			        if (!newValue.matches("\\d*")) {
 			        	min.setText(newValue.replaceAll("[^\\d]", ""));
-			        }else if(newValue.length()>0){
-			        	min.setOnAction(handler);listerBtn.setDisable(false);
-			        }else if(newValue.length()==0) {
+			        }else if(newValue.length()>0 ){
+			        	double entredMin = Double.parseDouble(newValue);
+			        	ObservableList<Salarier> obs = FXCollections.observableArrayList(data.getImportlist());
+				    	ObservableList<Salarier> obs1 = FXCollections.observableArrayList();
+				    	ObservableList<Category> obsCat = FXCollections.observableArrayList(data.getClassName());
+				    	ObservableList<Category> obsCat1 = FXCollections.observableArrayList();
+				    	for (Salarier s : obs) {
+				    		if(s.getSalaire()>entredMin) {
+				        		obs1.add(s);obsCat1.add(obsCat.get(obs.indexOf(s)));
+				       		}else if(s.getSalaire()<entredMin){
+				       			obs1.remove(s);obsCat1.remove(obsCat.get(obs.indexOf(s)));
+				       		}
+				        }
+				    	 table.setItems(obs1);
+				    		table2.setItems(obsCat1);
+				    		
+				    		if(newValue.compareTo("")==0){
+					    		try {
+									clearList();
+								} catch (Throwable e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+					    		importerList();
+					    	}
+			        }else if(newValue.length()==0 ) {
 			        	listerBtn.setDisable(true);
+			        }
+			        if(newValue.length()>0){
+			        	listerBtn.setDisable(false);
 			        }
 			    }
 			});
@@ -119,9 +146,36 @@ public class EntrepriseController implements Initializable{
 			        if (!newValue.matches("\\d*")) {
 			        	max.setText(newValue.replaceAll("[^\\d]", ""));
 			        }else if(newValue.length()>0){
-			        	max.setOnAction(handler);listerBtn.setDisable(false);
-			        }else if(newValue.length()==0) {
+			        	double entredMax = Double.parseDouble(newValue);
+			        	ObservableList<Salarier> obs = FXCollections.observableArrayList(data.getImportlist());
+				    	ObservableList<Salarier> obs1 = FXCollections.observableArrayList();
+				    	ObservableList<Category> obsCat = FXCollections.observableArrayList(data.getClassName());
+				    	ObservableList<Category> obsCat1 = FXCollections.observableArrayList();
+				    	for (Salarier s : obs) {
+				        	if(s.getSalaire()<entredMax) {
+				        		obs1.add(s);obsCat1.add(obsCat.get(obs.indexOf(s)));
+				       		}else if(s.getSalaire()>entredMax){
+				       			obs1.remove(s);obsCat1.remove(obsCat.get(obs.indexOf(s)));
+				       		}
+				        }
+				    	 table.setItems(obs1);
+				    		table2.setItems(obsCat1);
+				    		
+				    		if(newValue.compareTo("")==0){
+					    		try {
+									clearList();
+								} catch (Throwable e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+					    		importerList();
+					    	}
+			        	
+			        }else if(newValue.length()==0 ) {
 			        	listerBtn.setDisable(true);
+			        }
+			        if(newValue.length()>0){
+			        	listerBtn.setDisable(false);
 			        }
 			    }
 			});
@@ -213,19 +267,30 @@ public class EntrepriseController implements Initializable{
 	private List<Salarier> sal;
 	private List<Category> ct;
 	public void importerList() {
+		try {
+			clearList();
+		} catch (Throwable e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		sal = new ArrayList<Salarier>();
 		ct = new ArrayList<Category>();
 		try{  		
+			
 			Statement stmt=Connexion.getCn().createStatement();  
 			ResultSet rs=stmt.executeQuery("select * from entreprise");
 	
 			while(rs.next())  
 				if(rs.getString(8)=="Employe") {
-					sal.add(new Employe(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(5), rs.getDouble(6)));
+					Employe a = new Employe(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(5), rs.getDouble(6));
+					a.setSalaire(rs.getDouble(4));
+					sal.add(a);
 					ct.add(new Category(rs.getString(8)));
 				}
 				else {
-					sal.add(new Vendeur(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(5), rs.getDouble(6)));
+					Vendeur v = new Vendeur(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(5), rs.getDouble(6));
+					v.setSalaire(rs.getDouble(4));
+					sal.add(v);
 					ct.add(new Category(rs.getString(8)));
 				} 
 		}catch(Exception e){ System.out.println(e);} 
@@ -268,7 +333,7 @@ public class EntrepriseController implements Initializable{
 	 		
 	        Stage stage = new Stage();
 	        
-	        stage.setTitle("Update " + e.getMatricule());
+	        stage.setTitle("Update salarié de matricule " + e.getMatricule());
 	        stage.setScene(scene);
 	        stage.setOnCloseRequest(event -> {
 				event.consume();
@@ -413,6 +478,7 @@ public class EntrepriseController implements Initializable{
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
+		stage.setTitle("Ajouter un salarié");
 		stage.show();
 		stage.setOnCloseRequest(null);
 	}
@@ -438,7 +504,7 @@ public class EntrepriseController implements Initializable{
 	public void exportList() throws Throwable{
 		salarie = new ArrayList<Salarier>();
 		categorie = new ArrayList<Category>();
-		
+		int col = 15;
 		File exFile = new File("C:\\Users\\Moham\\OneDrive\\Documents\\Java Files\\list.txt");
 		FileWriter exFr = new FileWriter(exFile);
 		BufferedWriter bfr = new BufferedWriter(exFr);
@@ -460,13 +526,21 @@ public class EntrepriseController implements Initializable{
 		
 		Iterator<Salarier> itS = salarie.iterator();
 		Iterator<Category> itC = categorie.iterator();
-		bfr.write("Matricule/Nom/Email/Salaire/Recrutement/Valeur Sup/");
+		for(int i = 0; i<col*8; i++) {
+			bfr.write("-");
+		}
+		bfr.newLine();
+		bfr.write("Matricule       |Nom             |Email           |Salaire         |Recrutement     |Category        |");
+		
 		
 		while(itS.hasNext()) {
-			
-			newLine = itS.next().toString()+","+itC.next().toString();
-			bfr.write(newLine);
 			bfr.newLine();
+			for(int i = 0; i<col*8; i++) {
+				bfr.write("-");
+			}
+			bfr.newLine();
+			newLine = itS.next().toString()+"|"+itC.next().toString();
+			bfr.write(newLine);
 		}
 		bfr.close();
 		

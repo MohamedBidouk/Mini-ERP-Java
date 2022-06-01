@@ -94,6 +94,38 @@ public class AddSalarierController implements Initializable{
 		    }
 		});
 		
+		nom.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+		        String newValue) {
+		        if (!newValue.matches("^[a-zA-Z]*$")) {
+		            nom.setText(newValue.replaceAll("[1-9]*$", ""));
+		        }else if(newValue.length()==0){
+		        	confirmBtn.setText("Check Nom");
+	        		confirmBtn.setDisable(true);
+		        }else {
+		        	confirmBtn.setText("Confirmer");
+	        		confirmBtn.setDisable(false);
+		        }
+		    }
+		});
+		
+		
+		date.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+		        String newValue) {
+		        if (newValue.length()>4) {
+		            date.setText(newValue.replace(newValue, oldValue));
+		        }else if(newValue.length()==0){
+		        	confirmBtn.setText("Check Nom");
+	        		confirmBtn.setDisable(true);
+		        }else {
+		        	confirmBtn.setText("Confirmer");
+	        		confirmBtn.setDisable(false);
+		        }
+		    }
+		});
 		
 	}
 	
@@ -178,6 +210,7 @@ public class AddSalarierController implements Initializable{
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
+		stage.setTitle("Liste des salarié");
 		stage.show();
 	}
 }

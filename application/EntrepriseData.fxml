@@ -41,7 +41,7 @@
             <TableColumn fx:id="categoryCol" prefWidth="88.0" text="Category" />
          </columns>
       </TableView>
-      <Button fx:id="AfficherTout" layoutX="166.0" layoutY="60.0" mnemonicParsing="false" onAction="#importList" text="Afficher tout" />
+      <Button fx:id="AfficherTout" layoutX="166.0" layoutY="60.0" mnemonicParsing="false" onAction="#importerList" text="Afficher tout" />
       <Button fx:id="export" layoutX="25.0" layoutY="93.0" mnemonicParsing="false" onAction="#exportList" text="Exporter" />
       <TextField fx:id="search" layoutX="259.0" layoutY="60.0" prefHeight="25.0" prefWidth="259.0" />
    </children>

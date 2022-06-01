@@ -19,7 +19,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return  Cat ;
+		return  Cat+"|" ;
 	}
 	
 }

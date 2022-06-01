@@ -36,6 +36,7 @@ public class vueDetailController extends EntrepriseController implements Initial
 			 salaireCol.setCellValueFactory(new PropertyValueFactory<>("Salaire"));
 			 dateCol.setCellValueFactory(new PropertyValueFactory<>("recru"));
 			 supCol.setCellValueFactory(new PropertyValueFactory<>("vente"));
+			 
 		 }else {
 			 supCol.setText("Nombre d'heure sup");
 			 matCol.setCellValueFactory(new PropertyValueFactory<>("matricule"));
